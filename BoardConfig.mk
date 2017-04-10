@@ -68,8 +68,8 @@ TARGET_KERNEL_SELINUX_CONFIG := lineageos_gtexswifi_defconfig
 TARGET_VARIANT_CONFIG := lineageos_gtexswifi_defconfig
 TARGET_KERNEL_SOURCE := kernel/samsung/gtexswifi
 BOARD_CUSTOM_BOOTIMG := true
-BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/mkbootimg.mk
-TARGET_PREBUILT_DTB := $(LOCAL_PATH)/dt.img
+BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/boot/mkbootimg.mk
+TARGET_PREBUILT_DTB := $(LOCAL_PATH)/boot/dt.img
 
 # Lights
 TARGET_HAS_BACKLIT_KEYS := false
