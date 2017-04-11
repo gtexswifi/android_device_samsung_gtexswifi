@@ -6,7 +6,7 @@
 Component   | Details
 -------:|:-------------------------
 Model   | SM-T280
-CPU     | Quad-core 1.50GHz Spreadtrum SC9830
+CPU     | Quad-core 1.30GHz Spreadtrum SC7730SW
 GPU     | Mali-400MP2
 Memory  | 1.5GB RAM
 Shipped Android Version | 5.1.1
