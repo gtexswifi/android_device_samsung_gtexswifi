@@ -70,6 +70,7 @@ TARGET_KERNEL_SOURCE := kernel/samsung/gtexswifi
 BOARD_CUSTOM_BOOTIMG := true
 BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/boot/mkbootimg.mk
 TARGET_PREBUILT_DTB := $(LOCAL_PATH)/boot/dt.img
+TARGET_DHTB_PAD := $(LOCAL_PATH)/boot/dhtb.pad
 
 # Lights
 TARGET_HAS_BACKLIT_KEYS := false
