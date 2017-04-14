@@ -1,0 +1,4 @@
+# This file is required because reasons.
+# in the event we need an init.gtexswifi.rc file, we can now add one in relatively painlessly.
+import /init.gtexswifi.rc
+import /init.sc8830.rc
