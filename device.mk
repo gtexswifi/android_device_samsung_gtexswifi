@@ -89,6 +89,7 @@ PRODUCT_PACKAGES += \
 
 # Ramdisk
 PRODUCT_PACKAGES += \
+    libinit_gtexswifi \
     fstab.sc8830 \
     fstab.unknown \
     init.board.rc \

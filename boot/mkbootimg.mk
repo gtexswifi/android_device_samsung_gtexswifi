@@ -14,24 +14,32 @@
 
 LOCAL_PATH := $(call my-dir)
 
-ifdef TARGET_PREBUILT_DTB
-	BOARD_MKBOOTIMG_ARGS += --dt $(TARGET_PREBUILT_DTB)
-endif
+DTBTOOL := kernel/samsung/gtexswifi/scripts/dtbTool
+INSTALLED_DTIMAGE_TARGET := $(PRODUCT_OUT)/dt.img
 
-$(INSTALLED_BOOTIMAGE_TARGET): $(MKBOOTIMG) $(INTERNAL_BOOTIMAGE_FILES) $(BOOTIMAGE_EXTRA_DEPS)
+$(INSTALLED_DTIMAGE_TARGET): $(DTBTOOL) $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr $(INSTALLED_KERNEL_TARGET)
+	$(call pretty,"Target dt image: $(INSTALLED_DTIMAGE_TARGET)")
+	$(hide) $(DTBTOOL) -o $(INSTALLED_DTIMAGE_TARGET) -s $(BOARD_KERNEL_PAGESIZE) -p $(KERNEL_OUT)/scripts/dtc/ $(KERNEL_OUT)/arch/$(KERNEL_ARCH)/boot/dts/
+	@echo -e ${CL_CYN}"Made DT image: $@"${CL_RST}
+
+$(INSTALLED_BOOTIMAGE_TARGET): $(MKBOOTIMG) $(INTERNAL_BOOTIMAGE_FILES) $(BOOTIMAGE_EXTRA_DEPS) $(INSTALLED_DTIMAGE_TARGET)
 	$(call pretty,"Target boot image: $@")
-	$(hide) $(MKBOOTIMG) $(INTERNAL_BOOTIMAGE_ARGS) $(INTERNAL_MKBOOTIMG_VERSION_ARGS) $(BOARD_MKBOOTIMG_ARGS) --output $@
+	$(hide) $(MKBOOTIMG) $(INTERNAL_BOOTIMAGE_ARGS) $(INTERNAL_MKBOOTIMG_VERSION_ARGS) $(BOARD_MKBOOTIMG_ARGS) \
+	--dt $(INSTALLED_DTIMAGE_TARGET) --output $@
 	$(hide) mv $@ $@.tmp
+	@echo -e "Adding DHTB padding..."
 	$(hide) cat $(TARGET_DHTB_PAD) $@.tmp > $@
 	$(hide) rm $@.tmp
 	$(hide) echo -n "SEANDROIDENFORCE" >> $@
 	$(hide) $(call assert-max-image-size,$@,$(BOARD_BOOTIMAGE_PARTITION_SIZE),raw)
 	@echo "Made boot image: $@"
 
-$(INSTALLED_RECOVERYIMAGE_TARGET): $(MKBOOTIMG) $(recovery_ramdisk) $(recovery_kernel) $(RECOVERYIMAGE_EXTRA_DEPS)
+$(INSTALLED_RECOVERYIMAGE_TARGET): $(MKBOOTIMG) $(recovery_ramdisk) $(recovery_kernel) $(RECOVERYIMAGE_EXTRA_DEPS) $(INSTALLED_DTIMAGE_TARGET)
 	@echo "----- Making recovery image ------"
-	$(hide) $(MKBOOTIMG) $(INTERNAL_RECOVERYIMAGE_ARGS) $(INTERNAL_MKBOOTIMG_VERSION_ARGS) $(BOARD_MKBOOTIMG_ARGS) --output $@ --id > $(RECOVERYIMAGE_ID_FILE)
+	$(hide) $(MKBOOTIMG) $(INTERNAL_RECOVERYIMAGE_ARGS) $(INTERNAL_MKBOOTIMG_VERSION_ARGS) $(BOARD_MKBOOTIMG_ARGS) \
+	--dt $(INSTALLED_DTIMAGE_TARGET) --output $@ --id > $(RECOVERYIMAGE_ID_FILE)
 	$(hide) mv $@ $@.tmp
+	@echo -e "Adding DHTB padding..."
 	$(hide) cat $(TARGET_DHTB_PAD) $@.tmp > $@
 	$(hide) rm $@.tmp
 	$(hide) echo -n "SEANDROIDENFORCE" >> $@
