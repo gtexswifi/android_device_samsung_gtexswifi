@@ -164,9 +164,7 @@ on boot
     chown radio radio /dev/bcm_rpc
     chown radio radio /dev/bcm_irpc
 
-    setprop ro.build.product hawaii
-    setprop ro.product.device hawaii
-    setprop ro.radio.noril no
+    setprop ro.radio.noril yes
 
     chmod 0660 /dev/bcm_atc
     chown shell system /dev/bcm_atc

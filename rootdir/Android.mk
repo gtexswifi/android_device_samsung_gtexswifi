@@ -17,7 +17,7 @@
 LOCAL_PATH := $(my-dir)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE := init.core33g_base.rc
+LOCAL_MODULE := init.gtexswifi_base.rc
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_CLASS := ETC
 LOCAL_MODULE_PATH := $(TARGET_ROOT_OUT)

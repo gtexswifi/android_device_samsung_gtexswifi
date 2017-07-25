@@ -16,7 +16,9 @@
 -include device/samsung/scx30g-common/BoardConfigCommon.mk
 
 # Inherit from the proprietary version
--include vendor/samsung/core33g/BoardConfigVendor.mk
+-include vendor/samsung/gtexswifi/BoardConfigVendor.mk
+
+LOCAL_PATH := device/samsung/gtexswifi
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := sc7730s
@@ -50,21 +52,23 @@ WIFI_BAND := 802_11_ABG
 BOARD_HAVE_SAMSUNG_WIFI := true
 
 # Bluetooth
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/core33g/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
 
 # Kernel
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 2048
-TARGET_KERNEL_CONFIG := cyanogen_core33g_defconfig
-TARGET_KERNEL_SOURCE := kernel/samsung/core33g
-BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100 --dt device/samsung/core33g/dt.img
-TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-eabi-
-KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8/bin
+TARGET_KERNEL_CONFIG := lineage_gtexswifi_defconfig
+TARGET_KERNEL_SOURCE := kernel/samsung/sprd-common
+TARGET_USES_CUSTOM_BOOTIMG_MK := true
+BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100
+BOARD_CUSTOM_BOOTIMG := true
+BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/boot/mkbootimg.mk
+TARGET_DHTB_PAD := $(LOCAL_PATH)/boot/dhtb.pad
 
 # Resolution
 TARGET_SCREEN_HEIGHT := 800
 TARGET_SCREEN_WIDTH := 480
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := SM-G360H,SM-G360HU,core33g,core33gdd,core33gdx
+TARGET_OTA_ASSERT_DEVICE := SM-T280,gtexswifi
 

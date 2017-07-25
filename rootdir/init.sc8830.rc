@@ -1,6 +1,6 @@
 import /init.board.rc
 import /init.sc8830.usb.rc
-import /init.core33g_base.rc
+import /init.gtexswifi_base.rc
 import /init.wifi.rc
 
 on early-init

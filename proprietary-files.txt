@@ -31,21 +31,6 @@ etc/wifi/nvram_mfg.txt
 # Bluetooth
 vendor/firmware/BCM43430A1_V0025.0070.hcd
 
-# RIL
-bin/rild
-bin/modemd
-bin/nvitemd
-bin/phoneserver
-bin/modem_control
-bin/ext_data.sh
-bin/ext_kill.sh
-bin/ext_symlink.sh
-bin/prepare_param.sh
-lib/libril.so
-lib/libreference-ril_sp.so
-lib/libsecril-client.so
-lib/libsecnativefeature.so
-
 # Camera
 lib/libisp.so
 lib/libmorpho_easy_hdr.so
