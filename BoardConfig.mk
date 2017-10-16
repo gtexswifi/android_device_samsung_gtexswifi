@@ -17,6 +17,32 @@ BOARD_USES_SS_VOIP := true
 # Backlight
 BACKLIGHT_PATH := /sys/class/backlight/panel/brightness
 
+# Bluetooth
+USE_BLUETOOTH_BCM4343 := true
+BOARD_HAVE_BLUETOOTH := true
+BOARD_HAVE_BLUETOOTH_SPRD := true
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/gtexswifi/bluetooth
+BOARD_CUSTOM_BT_CONFIG := device/samsung/gtexswifi/bluetooth/libbt_vndcfg.txt
+SPRD_WCNBT_CHISET := marlin
+BOARD_SPRD_WCNBT_MARLIN := true
+BOARD_HAVE_FM_TROUT := true
+BOARD_USE_SPRD_FMAPP := true
+SPRD_CP_LOG_WCN := MARLIN
+WCN_EXTENSION := true
+
+BOARD_WPA_SUPPLICANT_DRIVER := NL80211
+WPA_SUPPLICANT_VERSION      := VER_2_1_DEVEL
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_sprdwl
+BOARD_HOSTAPD_DRIVER        := NL80211
+BOARD_HOSTAPD_PRIVATE_LIB   := lib_driver_cmd_sprdwl
+BOARD_WLAN_DEVICE           := sc2341
+WIFI_DRIVER_FW_PATH_PARAM   := "/data/misc/wifi/fwpath"
+WIFI_DRIVER_FW_PATH_STA     := "sta_mode"
+WIFI_DRIVER_FW_PATH_P2P     := "p2p_mode"
+WIFI_DRIVER_FW_PATH_AP      := "ap_mode"
+WIFI_DRIVER_MODULE_PATH     := "/lib/modules/sprdwl.ko"
+WIFI_DRIVER_MODULE_NAME     := "sprdwl"
+
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := SC7730SW
 
@@ -35,16 +61,20 @@ CHARGING_ENABLED_PATH := /sys/class/power_supply/battery/batt_lp_charging
 GLOBAL_CFLAGS += -DBOARD_CANT_REALLOCATE_OMX_BUFFERS
 
 # FM Radio
-BOARD_HAVE_BLUETOOTH_BCM := true
 BOARD_HAVE_FM_BCM := true
 
 # Graphics
+BOARD_EGL_CFG := device/samsung/gtexswifi/configs/egl.cfg
 TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
 BOARD_EGL_NEEDS_HANDLE_VALUE := true
-HWUI_COMPILE_FOR_PERF := true
 TARGET_REQUIRES_SYNCHRONOUS_SETSURFACE := true
 GLOBAL_CFLAGS += -DFORCE_SCREENSHOT_CPU_PATH
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
+USE_OVERLAY_COMPOSER_GPU := true
+USE_UI_OVERLAY := true
+USE_SPRD_DITHER := true
+TARGET_GPU_PLATFORM := utgard
+BOARD_VSP_SUPPORT_1080I := true
 
 # Hardware-specific
 SOC_SCX30G_V2 := true
@@ -63,13 +93,10 @@ BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_CMDLINE += console=ttyS1,115200n8
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100
-TARGET_KERNEL_CONFIG := lineageos_gtexswifi_defconfig
-TARGET_KERNEL_SELINUX_CONFIG := lineageos_gtexswifi_defconfig
-TARGET_VARIANT_CONFIG := lineageos_gtexswifi_defconfig
+TARGET_KERNEL_CONFIG := lineage_gtexswifi_defconfig
 TARGET_KERNEL_SOURCE := kernel/samsung/gtexswifi
 BOARD_CUSTOM_BOOTIMG := true
 BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/boot/mkbootimg.mk
-TARGET_PREBUILT_DTB := $(LOCAL_PATH)/boot/dt.img
 TARGET_DHTB_PAD := $(LOCAL_PATH)/boot/dhtb.pad
 
 # Lights
@@ -97,7 +124,13 @@ TW_THEME := portrait_mdpi
 RECOVERY_SDCARD_ON_DATA := true
 TW_NO_USB_STORAGE := true
 TW_USE_TOOLBOX := true
+TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/etc/twrp.fstab
+TW_HAS_DOWNLOAD_MODE := true
+TW_NO_REBOOT_BOOTLOADER := true
 endif
+TARGET_RECOVERY_PIXEL_FORMAT := "ABGR_8888"
+RECOVERY_GRAPHICS_FORCE_USE_LINELENGTH := true
+RECOVERY_GRAPHICS_FORCE_SINGLE_BUFFER := true
 BOARD_HAS_FLIPPED_SCREEN := true
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
@@ -108,4 +141,5 @@ BOARD_SEPOLICY_DIRS += \
 
 # inherit from the proprietary version
 -include vendor/samsung/gtexswifi/BoardConfigVendor.mk
+-include vendor/samsung/scx30g-common/BoardConfigVendor.mk
 

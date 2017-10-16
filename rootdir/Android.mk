@@ -10,14 +10,6 @@ LOCAL_SRC_FILES := etc/fstab.sc8830
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE := fstab.unknown
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_CLASS := ETC
-LOCAL_MODULE_PATH := $(TARGET_ROOT_OUT)
-LOCAL_SRC_FILES := etc/fstab.unknown
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
 LOCAL_MODULE := init.board.rc
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_CLASS := ETC
@@ -71,5 +63,13 @@ LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_CLASS := ETC
 LOCAL_MODULE_PATH := $(TARGET_ROOT_OUT)
 LOCAL_SRC_FILES := etc/ueventd.sc8830.rc
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := ueventd.unknown.rc
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_CLASS := ETC
+LOCAL_MODULE_PATH := $(TARGET_ROOT_OUT)
+LOCAL_SRC_FILES := etc/ueventd.unknown.rc
 include $(BUILD_PREBUILT)
 

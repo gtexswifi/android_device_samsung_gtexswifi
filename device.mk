@@ -27,7 +27,21 @@ PRODUCT_PACKAGES += \
     audio_policy.conf \
     codec_pga.xml \
     tiny_hw.xml \
-    audio.primary.sc8830
+    audio.primary.sc8830 \
+    audio_policy.sc8830 \
+    audio.r_submix.default \
+    audio.usb.default \
+    audio_vbc_eq \
+    libaudio-resampler \
+    libtinyalsa \
+    libeng-audio
+
+# Bluetooth
+PRODUCT_PACKAGES += \
+    bluetooth.default \
+    audio.a2dp.default \
+    libbt-vendor \
+    libbluetooth_jni
 
 # Camera
 PRODUCT_PACKAGES += \
@@ -49,13 +63,18 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     gps.xml
 
-# HWC
+# Graphics & HWC
 PRODUCT_PACKAGES += \
-    gralloc.sc8830 \
+    libHWCUtils \
+    libGLES_mali.so \
+    memtrack.sc8830 \
+    gralloc.sc8830.so \
     hwcomposer.sc8830 \
     sprd_gsp.sc8830 \
     libmemoryheapion \
-    libion_sprd
+    libion_sprd \
+    libstagefright_shim \
+    libgps_shim
 
 # Keylayouts
 PRODUCT_COPY_FILES += \
@@ -75,13 +94,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     media_codecs.xml \
     media_profiles.xml
-
-# Modules
-PRODUCT_PACKAGES += \
-    autotst.ko \
-    mali.ko \
-    mmc_test.ko \
-    sprdwl.ko
 
 # PowerHAL
 PRODUCT_PACKAGES += \

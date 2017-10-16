@@ -1,4 +1,2 @@
-Find out wtf is up with ro.boot.hardware/ro.hardware not being set to sc8830.
-Get the kernel modules to build inline (again)
 Get the damn thing to actually boot (may need to hack your way around the graphics patches)
 Do a lineageOS 14.1 bringup after the 13.0 one is done.

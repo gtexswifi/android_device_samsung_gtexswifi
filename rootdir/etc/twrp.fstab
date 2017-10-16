@@ -1,0 +1,8 @@
+/boot		emmc	/dev/block/platform/sdio_emmc/by-name/KERNEL	flags=display="Boot"
+/recovery	emmc	/dev/block/platform/sdio_emmc/by-name/RECOVERY	flags=display="Recovery"
+/system		ext4	/dev/block/platform/sdio_emmc/by-name/SYSTEM	flags=display="System"
+/preload	ext4	/dev/block/platform/sdio_emmc/by-name/HIDDEN
+/data		auto	/dev/block/platform/sdio_emmc/by-name/userdata
+/cache		auto	/dev/block/platform/sdio_emmc/by-name/CACHE	flags=display="Cache";backup=0
+/efs		auto	/dev/block/platform/sdio_emmc/by-name/efs
+/productinfo	auto	/dev/block/platform/sdio_emmc/by-name/prodnv
